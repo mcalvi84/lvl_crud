@@ -42,9 +42,11 @@ class ClientController extends Controller
             'name' =>'required|max:15',
             'due' => 'required|gte:1'
         ]);
+        
         $client = Client::create($request->only('name', 'due','comments'));
         
         Session::flash('mensaje', 'Registro Creado con Exito!');
+
         return redirect()->route('client.index');
     }
 
@@ -102,6 +104,9 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+
+        Session::flash('mensaje', 'Registro Eliminado con Exito!');
+        return redirect()->route('client.index');
     }
 }

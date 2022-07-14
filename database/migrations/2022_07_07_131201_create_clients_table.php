@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('name', 75);
             $table->float('due')->default(0);
-            $table->text('comments')->default('');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }
